@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JToggleButton;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
@@ -28,12 +30,15 @@ public class Game {
 	JButton moveButton;
 	ButtonGroup g1;
 	ButtonGroup g2; 
+	JLabel depth1;
+	JLabel depth2;
 	
 	BinaryTree tree; 
 	Node p1;
 	Node p2;
 	NodeG pd1;
 	NodeG pd2;
+	private JLabel message;
 	/**
 	 * Launch the application.
 	 */
@@ -72,6 +77,7 @@ public class Game {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	
 	private void initialize() {
 		frame.setBounds(100, 100, 1277, 656);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
@@ -138,12 +144,56 @@ public class Game {
 		g2 = new ButtonGroup();
 		g2.add(leftRB2);
 		g2.add(rightRB2);
+		
+		JLabel lblNewLabel_1 = new JLabel("depth : ");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_1.setBounds(64, 297, 54, 23);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		depth1 = new JLabel("0");
+		depth1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		depth1.setBounds(128, 297, 54, 23);
+		frame.getContentPane().add(depth1);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("depth : ");
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_1_1.setBounds(64, 467, 54, 23);
+		frame.getContentPane().add(lblNewLabel_1_1);
+		
+		depth2 = new JLabel("0");
+		depth2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		depth2.setBounds(128, 467, 54, 23);
+		frame.getContentPane().add(depth2);
+		
+		message = new JLabel("");
+		message.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		message.setBounds(64, 125, 430, 45);
+		frame.getContentPane().add(message);
 		moveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gameplay();
-				display();
+				try {
+					if(((leftRB1.isSelected() || rightRB1.isSelected()) && 
+							(leftRB2.isSelected() || rightRB2.isSelected())) ||
+							(!leftRB1.isVisible() && !rightRB1.isVisible()) ||
+							(!leftRB2.isVisible() && !rightRB2.isVisible()) ) {
+						gameplay();
+						display();
+					}
+					else {
+						throw new Exception();
+					}
+				}
+				catch(Exception e1) {
+					JOptionPane.showMessageDialog(frame, "Both player should select the path!",
+				               "Can't Move", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
+	}
+	public static void incDepth(JLabel l) {
+		int d = Integer.parseInt(l.getText());
+		d++;
+		l.setText(Integer.toString(d));
 	}
 	public void gameplay() {
 		//Conditions for moving player 1
@@ -151,25 +201,34 @@ public class Game {
 			pd1 = pd1.left;
 			p1 = p1.left;
 			posShow1.setText(pd1.label.getText());
+			incDepth(depth1);
 		}
 		else if(rightRB1.isSelected()) {
 			pd1 = pd1.right;
 			p1 = p1.right;
 			posShow1.setText(pd1.label.getText());
+			incDepth(depth1);
 		}
 		if(leftRB2.isSelected()) {
 			pd2 = pd2.left;
 			p2 = p2.left;
 			posShow2.setText(pd2.label.getText());
+			incDepth(depth2);
 		}
 		else if(rightRB2.isSelected()) {
 			pd2 = pd2.right;
 			p2 = p2.right;
 			posShow2.setText(pd2.label.getText());
+			incDepth(depth2);
 		}
 		g1.clearSelection();
 		g2.clearSelection();
 		
+	}
+	public static boolean isGreaterThan(JLabel l1 , JLabel l2) {
+		int c = Integer.parseInt(l1.getText());
+		int d = Integer.parseInt(l2.getText());
+		return c > d;
 	}
 	public void display() {
 		
@@ -215,6 +274,16 @@ public class Game {
 			rightRB2.setVisible(true);
 		}else {
 			rightRB2.setVisible(false);
+		}
+		if(p2.left == null && p2.right == null &&
+				p1.left == null && p1.right == null) {
+			if(isGreaterThan(depth1,depth2)) {
+				message.setText("Player 1 won the Game!");
+			}else if(isGreaterThan(depth2,depth1)) {
+				message.setText("Player 2 won the Game!");
+			}else {
+				message.setText("Draw the Game!");
+			}
 		}
 	}
 }
