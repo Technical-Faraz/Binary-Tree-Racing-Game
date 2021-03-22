@@ -1,7 +1,5 @@
 import java.awt.Color;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.*;
 
 import java.util.Random;
@@ -21,10 +19,11 @@ public class BinaryTreeGui{
 		//This is done to increase the probability of creating NodeG
 		if(depth != 5) {
 			parent = new NodeG();
-			l[data] =new JLabel();
+			l[data] =new JLabel(Integer.toString(data), JLabel.CENTER);
 			l[data].setSize(20, 20);
-			l[data].setText(Integer.toString(data));
 			l[data].setLocation(x, y);
+			l[data].setOpaque(true);
+			l[data].setBackground(Color.white);
 			frame.add(l[data]);
 			parent.number = l[data] ;
 			parent.left = createTree(parent.left,depth+1,data+data, x-10*(17/(depth*depth+1)), y+100);

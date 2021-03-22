@@ -34,6 +34,9 @@ public class Game {
 	 */
 	public Game() {
 		initialize();
+		BinaryTreeGui BTree = new BinaryTreeGui(frame);
+		NodeG n = new NodeG(); 
+		n = BTree.createTree(n, 0, 1, 800, 100);
 	}
 
 	/**
