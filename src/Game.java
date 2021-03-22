@@ -7,12 +7,14 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 
 public class Game {
 
 	private JFrame frame;
-
+	private NodeG n;
 	/**
 	 * Launch the application.
 	 */
@@ -33,17 +35,19 @@ public class Game {
 	 * Create the application.
 	 */
 	public Game() {
-		initialize();
+		frame = new JFrame();
+		BinaryTree b = new BinaryTree();
 		BinaryTreeGui BTree = new BinaryTreeGui(frame);
-		NodeG n = new NodeG(); 
-		n = BTree.createTree(n, 0, 1, 800, 100);
+		n = new NodeG(); 
+		n = BTree.createTree(n, 0, 1, 800, 150);
+		initialize();
+		b.traverse(b.n, n);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
 		frame.setBounds(100, 100, 1277, 656);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -101,5 +105,13 @@ public class Game {
 		moveButton.setFont(new Font("Tahoma", Font.PLAIN, 27));
 		moveButton.setBounds(64, 520, 227, 51);
 		frame.getContentPane().add(moveButton);
+		
+		ButtonGroup g1 = new ButtonGroup();
+		g1.add(leftRB1);
+		g1.add(rightRB1);
+		
+		ButtonGroup g2 = new ButtonGroup();
+		g2.add(leftRB2);
+		g2.add(rightRB2);
 	}
 }

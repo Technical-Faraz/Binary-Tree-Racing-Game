@@ -7,6 +7,12 @@ class Node{
 
 public class BinaryTree {
 	static Random r;
+	Node n;
+	BinaryTree(){
+		r = new Random();
+		n = new Node();
+		n = createTree(n, 0, 1, 1);
+	}
 	public static Node createTree(Node parent, int depth, int data, int choice) {
 		//If choice get 0 then no node else if 1 or 2 then make new node 
 		//This is done to increase the probability of creating node
@@ -26,13 +32,14 @@ public class BinaryTree {
 			return null;
 		}
 	}
-	public static void traverse(Node parent) {
+	public static void traverse(Node parent, NodeG dispNode) {
 		System.out.println(parent.number);
+		dispNode.number.setVisible(true);
 		if(parent.left != null) {
-			traverse(parent.left);
+			traverse(parent.left,dispNode.left);
 		}
 		if(parent.right != null) {
-			traverse(parent.right);
+			traverse(parent.right,dispNode.right);
 		}
 	}
 	
@@ -42,10 +49,6 @@ public class BinaryTree {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		r = new Random();
-		Node n = new Node();
-		n = createTree(n, 0, 1, 1);
-		traverse(n);
 		
 	}
 }

@@ -24,6 +24,7 @@ public class BinaryTreeGui{
 			l[data].setLocation(x, y);
 			l[data].setOpaque(true);
 			l[data].setBackground(Color.white);
+			l[data].setVisible(false);
 			frame.add(l[data]);
 			parent.number = l[data] ;
 			parent.left = createTree(parent.left,depth+1,data+data, x-10*(17/(depth*depth+1)), y+100);
