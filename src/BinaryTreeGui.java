@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import java.util.Random;
 class NodeG{
-	JLabel number;
+	JLabel label;
 	NodeG left;
 	NodeG right;
 }
@@ -26,7 +26,7 @@ public class BinaryTreeGui{
 			l[data].setBackground(Color.white);
 			l[data].setVisible(false);
 			frame.add(l[data]);
-			parent.number = l[data] ;
+			parent.label = l[data] ;
 			parent.left = createTree(parent.left,depth+1,data+data, x-10*(17/(depth*depth+1)), y+100);
 			parent.right = createTree(parent.right,depth+1,data+data+1,x+10*(17/ (depth*depth+1)),y+100);
 			return parent;

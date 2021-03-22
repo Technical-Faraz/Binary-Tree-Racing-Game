@@ -34,21 +34,12 @@ public class BinaryTree {
 	}
 	public static void traverse(Node parent, NodeG dispNode) {
 		System.out.println(parent.number);
-		dispNode.number.setVisible(true);
+		dispNode.label.setVisible(true);
 		if(parent.left != null) {
 			traverse(parent.left,dispNode.left);
 		}
 		if(parent.right != null) {
 			traverse(parent.right,dispNode.right);
 		}
-	}
-	
-	public static boolean isThereWay(Node n) {
-		return(n.left != null || n.right != null);
-	}
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
 	}
 }
