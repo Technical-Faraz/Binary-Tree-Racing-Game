@@ -35,13 +35,17 @@ public class BinaryTree {
 			traverse(parent.right);
 		}
 	}
+	
+	public static boolean isThereWay(Node n) {
+		return(n.left != null || n.right != null);
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		r = new Random();
 		Node n = new Node();
 		n = createTree(n, 0, 1, 1);
-//		int x = n.right.left.left.number;
-//		System.out.println(x);
 		traverse(n);
+		
 	}
 }
