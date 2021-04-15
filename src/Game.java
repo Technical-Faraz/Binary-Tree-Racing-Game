@@ -25,8 +25,8 @@ public class Game {
 	JRadioButton rightRB1;
 	JRadioButton leftRB2;
 	JRadioButton rightRB2;
-	JLabel lblNewLabel; 
-	JLabel lblPlayerIs; 
+	JLabel lblforp1; 
+	JLabel lblforp2; 
 	JLabel posShow1;
 	JLabel posShow2; 
 	JButton moveButton;
@@ -102,10 +102,10 @@ public class Game {
 		rightRB1.setBounds(64, 265, 111, 23);
 		frmBinaryTreeRace.getContentPane().add(rightRB1);
 		
-		lblNewLabel = new JLabel("Player 1 is at Node ");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(64, 203, 172, 23);
-		frmBinaryTreeRace.getContentPane().add(lblNewLabel);
+		lblforp1 = new JLabel("Player 1 is at Node ");
+		lblforp1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblforp1.setBounds(64, 203, 172, 23);
+		frmBinaryTreeRace.getContentPane().add(lblforp1);
 		
 		posShow1 = new JLabel("1");
 		posShow1.setOpaque(true);
@@ -116,10 +116,10 @@ public class Game {
 		posShow1.setBounds(246, 201, 45, 23);
 		frmBinaryTreeRace.getContentPane().add(posShow1);
 		
-		lblPlayerIs = new JLabel("Player 2 is at Node ");
-		lblPlayerIs.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblPlayerIs.setBounds(64, 375, 172, 23);
-		frmBinaryTreeRace.getContentPane().add(lblPlayerIs);
+		lblforp2 = new JLabel("Player 2 is at Node ");
+		lblforp2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblforp2.setBounds(64, 375, 172, 23);
+		frmBinaryTreeRace.getContentPane().add(lblforp2);
 		
 		posShow2 = new JLabel("1");
 		posShow2.setOpaque(true);
@@ -247,12 +247,9 @@ public class Game {
 	}
 	public void display(){
 		
-		if(pd1.label.getText().equals(pd2.label.getText())) {
+		if(pd1.label.getText().equals(pd2.label.getText())) {	//then pd1==pd2 points at some gui node
 			pd1.label.setBackground(Color.red);
 			pd1.label.setForeground(Color.WHITE);
-			pd2.label.setBackground(Color.red);
-			pd2.label.setForeground(Color.WHITE);
-
 		}else {
 			if(pd1.label.getText().equals(Integer.toString(p1.number)) ) {
 				pd1.label.setOpaque(true);
